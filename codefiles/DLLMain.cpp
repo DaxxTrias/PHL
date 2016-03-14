@@ -8,14 +8,14 @@
 DWORD WINAPI init (LPVOID)
 {
 
-	//PHLInput * input = PHLInput::Instance ();
+	PHLInput * input = PHLInput::Instance ();
 
 	PHLConsole::printLog ("\nGetting player offsets...\n");
 	PHLPlayer::Instance ()->printAddr ();
-	/*
+
 	PHLConsole::printLog ("\nGetting input offsets...\n");
 	input->printAddr ();
-
+	/*
 	PHLConsole::printLog ("\nActivating map hack...\n");
 	PHLMap::Instance ()->printAddr ();
 	*/

@@ -6,7 +6,7 @@
 
 #define MOUSE_HOOK_CODE_CAVE_SIZE 0x8
 #define POE_INPUT_LAG 6
-#define BG_PATCH_PATTERN_SEARCH_OFFSET 0x74
+#define BG_PATCH_PATTERN_SEARCH_OFFSET 0x6A
 
 bool PHLInput::isInputLocked = false;
 
@@ -129,45 +129,28 @@ void PHLInput::setInputHandlerEntry ()
 {
 	inputHandlerEntry =
 		PHLMemory::findPattern (HexPattern (
-			"55 8B EC 83 E4 F8 83 EC "
-			"?? 53 8B 5D 08 56 57 8B "
-			"7D 10"
-			));
+			"55 8B EC 83 E4 F8 83 EC 3C 53 8B 5D 0C"));
 }
 
 void PHLInput::setBGPatchEntry ()
 {
 	bgPatchEntry = BG_PATCH_PATTERN_SEARCH_OFFSET +
-		PHLMemory::findPattern (HexPattern ({
-		0x83, 0xEC, 0x68, 0x53,
-		0x55, 0x8B, 0xAC, 0x24,
-		0x80, 0x00, 0x00, 0x00,
-		0x56, 0x33, 0xDB, 0x57,
-		0x89, 0x5C, 0x24, 0x24
-	}));
+		PHLMemory::findPattern(HexPattern(
+			"83 EC 54 53 56 57 8B D9 C7 45 ?? ?? ?? ?? ??"));
 }
 
 void PHLInput::setMouseHookEntry ()
 {
 	mouseHook =
 		PHLMemory::findPattern (HexPattern (
-			"8B 44 24 18 8B 4C 24 1C "
-			"89 ?? E4 0A 00 00 89 ?? "
-			"E8 0A 00 00"
-			));
+			"8B 44 24 28 8B 4C 24 2C 89 87 ?? ?? ?? ??"));
 }
 
 void PHLInput::setKeyStatePtr ()
 {
 	keyStatePtr = 0x2 +
 		PHLMemory::findPattern (HexPattern (
-			"8B 35 ?? ?? ?? ?? ?? ??"
-			"?? ?? ?? ?? 6A 11 FF D6"
-			"66 85 C0 ?? ?? ?? ?? ??"
-			"?? 8B ?? 0C 8B ?? 04 8B"
-			"?? ?? ?? 00 00 8B ?? ??"
-			"?? 00 00 83 ?? F7"
-			));
+			"8B 1D ?? ?? ?? ?? 80 B8 ?? ?? ?? ?? ??"));
 
 	keyStatePtr = PHLMemory::readAddr (keyStatePtr);
 }
