@@ -7,6 +7,7 @@
 
 DWORD WINAPI init (LPVOID)
 {
+	/*
 	PHLInput * input = PHLInput::Instance ();
 
 	PHLConsole::printLog ("\nGetting player offsets...\n");
@@ -17,10 +18,10 @@ DWORD WINAPI init (LPVOID)
 
 	PHLConsole::printLog ("\nActivating map hack...\n");
 	PHLMap::Instance ()->printAddr ();
-
+	*/
 	PHLConsole::printLog ("\nActivating bypass...\n");
 	PHLBypass::Instance ()->printAddr ();
-
+	/*
 	PHLConsole::printLog ("\nHooking D3D...\n");
 	PHLD3DRender::Instance ()->printAddr();
 
@@ -39,6 +40,7 @@ DWORD WINAPI init (LPVOID)
 		input->sendPoEMouseInput (0x200, x, y, 4);
 		input->sendPoEMouseInput (0x201, x, y, 4);
 	}
+	*/
 	return 0;
 }
 
