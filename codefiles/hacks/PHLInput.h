@@ -10,7 +10,7 @@ class PHLInput : public PHLHack<PHLInput>
 {
 	PHLInput ();
 	~PHLInput ();
-	
+
 	void sendPoEInput (int mouseX, int mouseY, int errorMargin,
 					   DWORD wParam, DWORD lParam, DWORD message);
 	void callPoEInputHandler (DWORD wParam, DWORD lParam,
