@@ -37,9 +37,8 @@ PHLD3DRender::PHLD3DRender ()
 {
 	Addr addy;
 	addy = PHLMemory::findPattern (HexPattern (
-		"6A 00 68 ?? ?? ?? ?? E8 "
-		"?? ?? ?? ?? 83 C4 0C B3 "
-		"01")) +
+		"6A 00 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? 83 "
+		"C4 0C C6 05 ?? ?? ?? ?? ??")) +
 		D3D9_DEVICE_SEARCH_OFFSET;
 
 	addy = PHLMemory::readAddr (addy);
@@ -61,8 +60,7 @@ PHLD3DRender::PHLD3DRender ()
 	refreshRate = (int)PHLMemory::readAddr ((Addr)device + 0x60);
 
 	endSceneHookEntry = PHLMemory::findPattern (HexPattern (
-		"8B 82 A8 00 00 00 57 FF "
-		"D0 80 3D ?? ?? ?? ?? 00"));
+		"FF 90 ?? ?? ?? ?? 5E 8B E5 5D C2 14 00"));
 	endSceneRet = endSceneHookEntry +
 		END_SCENE_HOOK_HOOK_SIZE;
 
@@ -97,7 +95,7 @@ __declspec(naked) void PHLD3DRender::endSceneHook ()
 				"attempting to gain access to device end scene");
 		}
 	}
-	
+
 	for (int i = 0; i < textArray.getSize (); i++)
 	{
 		RECT textBox =
@@ -115,13 +113,13 @@ __declspec(naked) void PHLD3DRender::endSceneHook ()
 										textArray.array[i]->b));
 	}
 	*/
-	
-	
+
+
 	SetRect (&fontRect, 0, 0, 600, 600);
 	fontHeight = font->DrawTextW (0,
 		L"Hey there!", -1, &fontRect,
 		DT_LEFT | DT_NOCLIP, 0xFFFFFFFF);
-		
+
 
 	__asm
 	{

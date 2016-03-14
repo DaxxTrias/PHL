@@ -15,13 +15,18 @@ DWORD WINAPI init (LPVOID)
 
 	PHLConsole::printLog ("\nGetting input offsets...\n");
 	input->printAddr ();
+
 	/*
+	// In over my head trying to fix this one.
 	PHLConsole::printLog ("\nActivating map hack...\n");
 	PHLMap::Instance ()->printAddr ();
 	*/
+
 	PHLConsole::printLog ("\nActivating bypass...\n");
 	PHLBypass::Instance ()->printAddr ();
+
 	/*
+	// In over my head here too
 	PHLConsole::printLog ("\nHooking D3D...\n");
 	PHLD3DRender::Instance ()->printAddr();
 
@@ -41,6 +46,7 @@ DWORD WINAPI init (LPVOID)
 		input->sendPoEMouseInput (0x201, x, y, 4);
 	}
 	*/
+
 	return 0;
 }
 

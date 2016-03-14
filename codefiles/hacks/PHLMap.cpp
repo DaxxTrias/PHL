@@ -21,10 +21,9 @@ PHLMap::PHLMap ()
 			0x28 = 0xE8
 	*/
 	mapHackOff =
-		PHLMemory::findPattern (HexPattern ({
-		0xD9, 0x00, 0x8B, 0x0C,
-		0x24, 0xD9, 0x19, 0x8B
-	}));
+		PHLMemory::findPattern(HexPattern(
+			"8B 10 89 16 8B 74 24 08 83 C6 04 89 74 24 "
+			"08 8B 10 89 16 8B 74 24 08 83 C6 04 89 74 24 08 8B 10 89 16"));
 
 	CodeCave cc (mapHackOff, { 0xE8 });
 
