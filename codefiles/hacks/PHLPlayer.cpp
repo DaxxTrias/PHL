@@ -34,7 +34,9 @@ PHLPlayer::PHLPlayer ()
 {
 	baseStruct =
 		PHLMemory::Instance ()->findPattern (
-			HexPattern ("68 ?? ?? ?? ?? 8D 4D 18 89 45 6C"));
+			HexPattern ("E8 ? ? ? ? 68 ? ? ? ? 8D 4D ?? 89 45 ?? "
+				"E8 ?? ?? ?? ?? 8D ?? ?? 8B ?? 50"));
+
 
 	baseStruct = PHLMemory::readAddr (baseStruct -
 									  BASE_STRUCT_SEARCH_OFFSET);
